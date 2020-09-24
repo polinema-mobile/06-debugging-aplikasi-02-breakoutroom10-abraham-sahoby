@@ -23,8 +23,20 @@ public class TesKlikButton {
     @Test
     public void tesKlikButtonSatu(){
         //cari id button1 terus di klik
-        onView(withId(R.id.button1)).perform(click());
-        onView(withId(R.id.input)).check(matches(withText("1")));
+//        onView(withId(R.id.button1)).perform(click());
+//        onView(withId(R.id.input)).check(matches(withText("1")));
+
+        onView(withId(R.id.button5)).perform(click());
+        onView(withId(R.id.input)).check(matches(withText("5")));
+//        onView(withId(R.id.button_add)).perform(click());
+//        onView(withId(R.id.input)).check(matches(withText("+")));
+//        onView(withId(R.id.button3)).perform(click());
+//        onView(withId(R.id.input)).check(matches(withText("3")));
+//        onView(withId(R.id.button6)).perform(click());
+//        onView(withId(R.id.input)).check(matches(withText("6")));
+
+
+
     }
 
 }

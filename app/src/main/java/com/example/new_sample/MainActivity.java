@@ -175,12 +175,26 @@ public class MainActivity extends AppCompatActivity {
                         t2.setText((int) val1 + "+");
                     }
                     t1.setText(null);
-                } else {
-                    t2.setText("Error");
-                }
-            }
-        });
+                } else if (t2.getText().length()>0) {
+                    String value = " " + val1;
+                    t1.setText(value);
+                    operation();
+                    ACTION = ADDITION;
+                    if (t1.getText().length() > 0) {
+                        ACTION = ADDITION;
+                        operation();
+                        if (!ifReallyDecimal()) {
+                            t2.setText(val1 + "+");
+                        } else {
+                            t2.setText((int) val1 + "+");
+                        }
+                        t1.setText(null);}
+                    } else {
+                        t2.setText("Error");
+                    }
 
+                }
+        });
         b_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,7 +208,22 @@ public class MainActivity extends AppCompatActivity {
                             t2.setText((int) val1 + "-");
                         }
                     t1.setText(null);
-                } else {
+                } else if (t2.getText().length()>0) {
+                    String value = " " + val1;
+                    t1.setText(value);
+                    operation();
+                    ACTION = SUBTRACTION;
+                    if (t1.getText().length() > 0) {
+                        ACTION = ADDITION;
+                        operation();
+                        if (!ifReallyDecimal()) {
+                            t2.setText(val1 + "-");
+                        } else {
+                            t2.setText((int) val1 + "-");
+                        }
+                        t1.setText(null);
+                    }
+                }else {
                     t2.setText("Error");
                 }
             }
@@ -212,7 +241,22 @@ public class MainActivity extends AppCompatActivity {
                         t2.setText((int) val1 + "×");
                     }
                     t1.setText(null);
-                } else {
+                } else if (t2.getText().length()>0) {
+                    String value = " " + val1;
+                    t1.setText(value);
+                    operation();
+                    ACTION = MULTIPLICATION;
+                    if (t1.getText().length() > 0) {
+                        ACTION = ADDITION;
+                        operation();
+                        if (!ifReallyDecimal()) {
+                            t2.setText(val1 + "*");
+                        } else {
+                            t2.setText((int) val1 + "*");
+                        }
+                        t1.setText(null);}
+
+            }else {
                     t2.setText("Error");
                 }
             }
@@ -230,7 +274,21 @@ public class MainActivity extends AppCompatActivity {
                         t2.setText(val1 + "/");
                     }
                     t1.setText(null);
-                } else {
+                }else if (t2.getText().length()>0) {
+                    String value = " " + val1;
+                    t1.setText(value);
+                    operation();
+                    ACTION = DIVISION;
+                    if (t1.getText().length() > 0) {
+                        ACTION = ADDITION;
+                        operation();
+                        if (!ifReallyDecimal()) {
+                            t2.setText(val1 + "+");
+                        } else {
+                            t2.setText((int) val1 + "+");
+                        }
+                        t1.setText(null);}
+                }else {
                     t2.setText("Error");
                 }
             }
@@ -297,27 +355,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void viewSetup() {
-        b1 = findViewById(R.id.button1);
-        b2 = findViewById(R.id.button2);
-        b3 = findViewById(R.id.button3);
-        b4 = findViewById(R.id.button4);
-        b5 = findViewById(R.id.button5);
-        b6 = findViewById(R.id.button6);
-        b7 = findViewById(R.id.button7);
-        b8 = findViewById(R.id.button8);
-        b9 = findViewById(R.id.button9);
-        b0 = findViewById(R.id.button0);
-        b_equal = findViewById(R.id.button_equal);
-        b_multi = findViewById(R.id.button_multi);
-        b_divide = findViewById(R.id.button_divide);
-        b_add = findViewById(R.id.button_add);
-        b_sub = findViewById(R.id.button_sub);
-        b_clear = findViewById(R.id.button_clear);
-        b_dot = findViewById(R.id.button_dot);
-        b_para1 = findViewById(R.id.button_para1);
-        b_para2 = findViewById(R.id.button_para2);
-        t1 = findViewById(R.id.input);
-        t2 = findViewById(R.id.output);
+        b1 = (Button) findViewById(R.id.button1);
+        b2 = (Button)findViewById(R.id.button2);
+        b3 = (Button)findViewById(R.id.button3);
+        b4 = (Button)findViewById(R.id.button4);
+        b5 = (Button)findViewById(R.id.button5);
+        b6 = (Button)findViewById(R.id.button6);
+        b7 = (Button)findViewById(R.id.button7);
+        b8 = (Button)findViewById(R.id.button8);
+        b9 = (Button)findViewById(R.id.button9);
+        b0 = (Button)findViewById(R.id.button0);
+        b_equal = (Button)findViewById(R.id.button_equal);
+        b_multi = (Button)findViewById(R.id.button_multi);
+        b_divide = (Button)findViewById(R.id.button_divide);
+        b_add = (Button)findViewById(R.id.button_add);
+        b_sub = (Button)findViewById(R.id.button_sub);
+        b_clear = (Button)findViewById(R.id.button_clear);
+        b_dot = (Button)findViewById(R.id.button_dot);
+        b_para1 = (Button) findViewById(R.id.button_para1);
+        b_para2 = (Button)findViewById(R.id.button_para2);
+        t1 = (TextView) findViewById(R.id.input);
+        t2 = (TextView) findViewById(R.id.output);
     }
 
     private void operation() {
@@ -348,6 +406,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case EQU:
                     break;
+
             }
         } else {
             val1 = Double.parseDouble(t1.getText().toString());
@@ -370,27 +429,27 @@ public class MainActivity extends AppCompatActivity {
         String inputExpression = t2.getText().toString();
         if (!inputExpression.isEmpty() && !inputExpression.equals("Error")) {
             if (inputExpression.contains("-")) {
-                inputExpression = inputExpression.replace("-", "");
+                inputExpression += inputExpression.replace("-", "");
                 t2.setText("");
                 val1 = Double.parseDouble(inputExpression);
             }
             if (inputExpression.contains("+")) {
-                inputExpression = inputExpression.replace("+", "");
+                inputExpression += inputExpression.replace("+", "");
                 t2.setText("");
                 val1 = Double.parseDouble(inputExpression);
             }
             if (inputExpression.contains("/")) {
-                inputExpression = inputExpression.replace("/", "");
+                inputExpression += inputExpression.replace("/", "");
                 t2.setText("");
                 val1 = Double.parseDouble(inputExpression);
             }
             if (inputExpression.contains("%")) {
-                inputExpression = inputExpression.replace("%", "");
+                inputExpression += inputExpression.replace("%", "");
                 t2.setText("");
                 val1 = Double.parseDouble(inputExpression);
             }
             if (inputExpression.contains("×")) {
-                inputExpression = inputExpression.replace("×", "");
+                inputExpression += inputExpression.replace("×", "");
                 t2.setText("");
                 val1 = Double.parseDouble(inputExpression);
             }
