@@ -179,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                     String value = " " + val1;
                     t1.setText(value);
                     operation();
-                    ACTION = ADDITION;
                     if (t1.getText().length() > 0) {
                         ACTION = ADDITION;
                         operation();
@@ -212,9 +211,8 @@ public class MainActivity extends AppCompatActivity {
                     String value = " " + val1;
                     t1.setText(value);
                     operation();
-                    ACTION = SUBTRACTION;
                     if (t1.getText().length() > 0) {
-                        ACTION = ADDITION;
+                        ACTION = SUBTRACTION;
                         operation();
                         if (!ifReallyDecimal()) {
                             t2.setText(val1 + "-");
@@ -245,14 +243,13 @@ public class MainActivity extends AppCompatActivity {
                     String value = " " + val1;
                     t1.setText(value);
                     operation();
-                    ACTION = MULTIPLICATION;
                     if (t1.getText().length() > 0) {
-                        ACTION = ADDITION;
+                        ACTION = MULTIPLICATION;
                         operation();
                         if (!ifReallyDecimal()) {
-                            t2.setText(val1 + "*");
+                            t2.setText(val1 + "x");
                         } else {
-                            t2.setText((int) val1 + "*");
+                            t2.setText((int) val1 + "x");
                         }
                         t1.setText(null);}
 
@@ -278,14 +275,13 @@ public class MainActivity extends AppCompatActivity {
                     String value = " " + val1;
                     t1.setText(value);
                     operation();
-                    ACTION = DIVISION;
                     if (t1.getText().length() > 0) {
-                        ACTION = ADDITION;
+                        ACTION = DIVISION;
                         operation();
                         if (!ifReallyDecimal()) {
-                            t2.setText(val1 + "+");
+                            t2.setText(val1 + "/");
                         } else {
-                            t2.setText((int) val1 + "+");
+                            t2.setText((int) val1 + "/");
                         }
                         t1.setText(null);}
                 }else {
